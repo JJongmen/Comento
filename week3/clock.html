@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알람 시스템</title>
+    <style>
+        .box {
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+        .input-box {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="battery-box">배터리 상태: 100%</div>
+    <div class="box" id="time-box">현재 시간: 12:00:00</div>
+    <div class="box" id="alarm-status-box">알람 현황: 없음</div>
+
+    <div class="input-box">
+        <label for="hours">시:</label>
+        <input type="number" id="hours" name="hours" min="0" max="23">
+        <label for="minutes">분:</label>
+        <input type="number" id="minutes" name="minutes" min="0" max="59">
+        <label for="seconds">초:</label>
+        <input type="number" id="seconds" name="seconds" min="0" max="59">
+    </div>
+    <div class="input-box">
+        <button id="add-alarm-button">알람 추가</button>
+    </div>
+
+    <script>
+        let battery = 100;
+        let alarms = [];
+        const batteryBox = document.getElementById('battery-box');
+        const timeBox = document.getElementById('time-box');
+        const alarmStatusBox = document.getElementById('alarm-status-box');
+
+        function updateBattery() {
+            if (battery <= 0) {
+                batteryBox.style.backgroundColor = 'red';
+                timeBox.style.backgroundColor = 'black';
+                timeBox.textContent = '';
+                return;
+            }
+            if (battery < 20) {
+                batteryBox.style.backgroundColor = 'red';
+            }
+            batteryBox.textContent = '배터리 상태: ' + battery + '%';
+            battery--;
+        }
+
+        function updateTime() {
+            if (battery <= 0) return;
+            const now = new Date();
+            const timeString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+            timeBox.textContent = '현재 시간: ' + timeString;
+
+            alarms.forEach((alarm, index) => {
+                if (alarm.hours == now.getHours() && alarm.minutes == now.getMinutes() && alarm.seconds == now.getSeconds()) {
+                    alert('알람 시간입니다!');
+                    alarms.splice(index, 1);
+                    updateAlarmStatus();
+                }
+            });
+        }
+
+        function updateAlarmStatus() {
+            if (alarms.length === 0) {
+                alarmStatusBox.textContent = '알람 현황: 없음';
+            } else {
+                let status = '알람 현황:';
+                alarms.forEach(alarm => {
+                    status += ` ${alarm.hours}:${alarm.minutes}:${alarm.seconds}`;
+                });
+                alarmStatusBox.textContent = status;
+            }
+        }
+
+        document.getElementById('add-alarm-button').addEventListener('click', function() {
+            if (alarms.length >= 3) {
+                alert('최대 3개의 알람만 설정 가능합니다.');
+                return;
+            }
+            const hours = document.getElementById('hours').value;
+            const minutes = document.getElementById('minutes').value;
+            const seconds = document.getElementById('seconds').value;
+            alarms.push({ hours, minutes, seconds });
+            updateAlarmStatus();
+        });
+
+        setInterval(updateBattery, 1000);
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
