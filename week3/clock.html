@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>알람 시스템</title>
     <style>
+        @font-face {
+            font-family: 'DigitalFont';
+            src: url('LAB디지털.ttf') format('truetype');
+        }
         .box {
+            font-family: 'DigitalFont';
             border: 1px solid #000;
             padding: 10px;
             margin: 10px;
@@ -87,9 +92,25 @@
                 alert('최대 3개의 알람만 설정 가능합니다.');
                 return;
             }
-            const hours = document.getElementById('hours').value;
-            const minutes = document.getElementById('minutes').value;
-            const seconds = document.getElementById('seconds').value;
+
+            const hours = parseInt(document.getElementById('hours').value);
+            const minutes = parseInt(document.getElementById('minutes').value);
+            const seconds = parseInt(document.getElementById('seconds').value);
+            
+            // 시, 분, 초의 유효성 검증
+            if (hours < 0 || hours > 23 || isNaN(hours)) {
+                alert('시간은 0에서 23 사이의 숫자여야 합니다.');
+                return;
+            }
+            if (minutes < 0 || minutes > 59 || isNaN(minutes)) {
+                alert('분은 0에서 59 사이의 숫자여야 합니다.');
+                return;
+            }
+            if (seconds < 0 || seconds > 59 || isNaN(seconds)) {
+                alert('초는 0에서 59 사이의 숫자여야 합니다.');
+                return;
+            }            
+
             alarms.push({ hours, minutes, seconds });
             updateAlarmStatus();
         });
