@@ -16,15 +16,13 @@
             <p>알람 현황</p>
         </div>
         <div class="input-box">
-            <label for="hours">시:</label>
             <input type="number" id="hours" name="hours" min="0" max="23">
-            <label for="minutes">분:</label>
+            <label for="hours">시</label>
             <input type="number" id="minutes" name="minutes" min="0" max="59" step="1">
-            <label for="seconds">초:</label>
+            <label for="minutes">분</label>
             <input type="number" id="seconds" name="seconds" min="0" max="59" step="1">
-        </div>
-        <div class="input-box">
-            <button id="add-alarm-button">알람 추가</button>
+            <label for="seconds">초</label>
+            <button id="add-alarm-button">추가</button>
         </div>
     </main>
     <audio id="alarm-sound" src="alarm.mp3" preload="auto"></audio>

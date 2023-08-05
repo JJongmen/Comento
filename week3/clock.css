@@ -2,6 +2,7 @@
     font-family: 'DigitalFont';
     src: url('LAB디지털.ttf') format('truetype');
 }
+
 .box {
     font-family: 'DigitalFont';
     border: 1px solid #000;
@@ -10,22 +11,35 @@
     width: 200px;
     text-align: center;
 }
+
 .input-box {
     margin: 10px;
     display: flex;
     justify-content: center;
 }
+
 header {
     display: flex;
     justify-content: center;
 }
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 #alarm-status-box p:first-child {
     line-height: 2; 
     margin: 0;
+}
+
+.input-box label {
+    margin-right: 5px;
+}
+
+.input-box input {
+    width: 30px;
+    margin-right: 5px;
 }
