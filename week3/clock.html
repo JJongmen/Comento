@@ -39,6 +39,8 @@
         <button id="add-alarm-button">알람 추가</button>
     </div>
 
+    <audio id="alarm-sound" src="alarm.mp3" preload="auto"></audio>
+
     <script>
         function padNumber(number) {
             return number.toString().padStart(2, '0');
@@ -49,6 +51,7 @@
         const batteryBox = document.getElementById('battery-box');
         const timeBox = document.getElementById('time-box');
         const alarmStatusBox = document.getElementById('alarm-status-box');
+        const alarmSound = document.getElementById('alarm-sound');
 
         function updateBattery() {
             if (battery <= 0) {
@@ -72,7 +75,10 @@
 
             alarms.forEach((alarm, index) => {
                 if (alarm.hours == now.getHours() && alarm.minutes == now.getMinutes() && alarm.seconds == now.getSeconds()) {
+                    alarmSound.play();
                     alert('알람 시간입니다!');
+                    alarmSound.pause();
+                    alarmSound.currentTime = 0;
                     alarms.splice(index, 1);
                     updateAlarmStatus();
                 }
