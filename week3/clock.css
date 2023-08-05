@@ -25,3 +25,7 @@ main {
     align-items: center;
     flex-direction: column;
 }
+#alarm-status-box p:first-child {
+    line-height: 2; 
+    margin: 0;
+}

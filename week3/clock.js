@@ -41,14 +41,17 @@ function updateTime() {
 } 
 
 function updateAlarmStatus() {
+    const alarmBox = document.getElementById('alarm-status-box');
     if (alarms.length === 0) {
-        alarmStatusBox.textContent = '알람 현황: 없음';
+        alarmBox.innerHTML = '<p>알람 현황</p>';
     } else {
-        let status = '알람 현황:';
+        alarmBox.innerHTML = '<p>알람 현황</p>';
         alarms.forEach(alarm => {
-            status += ` ${padNumber(alarm.hours)}:${padNumber(alarm.minutes)}:${padNumber(alarm.seconds)}`;
+            const alarmTime = `${padNumber(alarm.hours)}:${padNumber(alarm.minutes)}:${padNumber(alarm.seconds)}`;
+            const alarmDiv = document.createElement('div');
+            alarmDiv.textContent = alarmTime;
+            alarmBox.appendChild(alarmDiv);
         });
-        alarmStatusBox.textContent = status;
     }
 } 
 
