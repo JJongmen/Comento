@@ -31,15 +31,19 @@
         <label for="hours">시:</label>
         <input type="number" id="hours" name="hours" min="0" max="23">
         <label for="minutes">분:</label>
-        <input type="number" id="minutes" name="minutes" min="0" max="59">
+        <input type="number" id="minutes" name="minutes" min="0" max="59" step="1">
         <label for="seconds">초:</label>
-        <input type="number" id="seconds" name="seconds" min="0" max="59">
+        <input type="number" id="seconds" name="seconds" min="0" max="59" step="1">
     </div>
     <div class="input-box">
         <button id="add-alarm-button">알람 추가</button>
     </div>
 
     <script>
+        function padNumber(number) {
+            return number.toString().padStart(2, '0');
+        }
+        
         let battery = 100;
         let alarms = [];
         const batteryBox = document.getElementById('battery-box');
@@ -63,7 +67,7 @@
         function updateTime() {
             if (battery <= 0) return;
             const now = new Date();
-            const timeString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+            const timeString = padNumber(now.getHours()) + ':' + padNumber(now.getMinutes()) + ':' + padNumber(now.getSeconds());
             timeBox.textContent = '현재 시간: ' + timeString;
 
             alarms.forEach((alarm, index) => {
@@ -81,7 +85,7 @@
             } else {
                 let status = '알람 현황:';
                 alarms.forEach(alarm => {
-                    status += ` ${alarm.hours}:${alarm.minutes}:${alarm.seconds}`;
+                    status += ` ${padNumber(alarm.hours)}:${padNumber(alarm.minutes)}:${padNumber(alarm.seconds)}`;
                 });
                 alarmStatusBox.textContent = status;
             }
@@ -93,21 +97,21 @@
                 return;
             }
 
-            const hours = parseInt(document.getElementById('hours').value);
-            const minutes = parseInt(document.getElementById('minutes').value);
-            const seconds = parseInt(document.getElementById('seconds').value);
+            const hours = parseFloat(document.getElementById('hours').value);
+            const minutes = parseFloat(document.getElementById('minutes').value);
+            const seconds = parseFloat(document.getElementById('seconds').value);
             
             // 시, 분, 초의 유효성 검증
-            if (hours < 0 || hours > 23 || isNaN(hours)) {
-                alert('시간은 0에서 23 사이의 숫자여야 합니다.');
+            if (hours < 0 || hours > 23 || isNaN(hours) || !Number.isInteger(hours)) {
+                alert('시간은 0에서 23 사이의 정수여야 합니다.');
                 return;
             }
-            if (minutes < 0 || minutes > 59 || isNaN(minutes)) {
-                alert('분은 0에서 59 사이의 숫자여야 합니다.');
+            if (minutes < 0 || minutes > 59 || isNaN(minutes) || !Number.isInteger(minutes)) {
+                alert('분은 0에서 59 사이의 정수여야 합니다.');
                 return;
             }
-            if (seconds < 0 || seconds > 59 || isNaN(seconds)) {
-                alert('초는 0에서 59 사이의 숫자여야 합니다.');
+            if (seconds < 0 || seconds > 59 || isNaN(seconds) || !Number.isInteger(seconds)) {
+                alert('초는 0에서 59 사이의 정수여야 합니다.');
                 return;
             }            
 
