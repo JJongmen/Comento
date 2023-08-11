@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PtoJ 회원가입</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-    <script defer src="js/loadHeader.js"></script>
-    <script defer src="js/loadFooter.js"></script>
+
+<main class="container">
+    <h1>회원가입</h1>
+    <form id="signupForm">
+        <div>
+            <label for="username">아이디:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">회원가입</button>
+    </form>
+</main>
+
+<script defer src="js/loadHeader.js"></script>
+<script defer src="js/loadFooter.js"></script>
+<script defer src="js/signup.js"></script>
 </body>
 </html>
