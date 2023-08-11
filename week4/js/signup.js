@@ -32,7 +32,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         return; // 유효하지 않은 비밀번호인 경우 요청 중단
     }
 
-    fetch('http://localhost:8000/api/auth/users/', {
+    fetch('https://port-0-todolist-server-eu1k2lll3di417.sel3.cloudtype.app/api/auth/users/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

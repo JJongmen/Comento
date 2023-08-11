@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PtoJ TodoList</title>
+    <title>PtoJ Todo</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
     <script defer src="js/loadHeader.js"></script>
+    
+    <main class="container">
+        <h2>오늘의 할 일</h2>
+        <ul id="todo-list">
+            
+        </ul>
+        
+        <div class="input-group">
+            <input type="text" id="new-todo" placeholder="새로운 할 일 추가...">
+            <button onclick="addTodo()">추가</button>
+        </div>
+    </main>
+
+    <script defer src="js/todo.js"></script>
     <script defer src="js/loadFooter.js"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     })
     .then(data => {
         const accessToken = data.access;
-        localStorage.setItem('Authorization', 'JWT ' + accessToken); // JWT 토큰을 localStorage에 저장
+        localStorage.setItem('Authorization', accessToken); // JWT 토큰을 localStorage에 저장
 
         window.location.href = 'todo.html'; // 페이지 리다이렉트
     })
