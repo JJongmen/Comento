@@ -4,7 +4,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost:8000/api/auth/jwt/create/', {
+    fetch('https://port-0-todolist-server-eu1k2lll3di417.sel3.cloudtype.app/api/auth/jwt/create/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
