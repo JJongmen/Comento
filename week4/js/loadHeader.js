@@ -12,8 +12,12 @@ function loadHeader() {
                 const signupLink = headerElement.querySelector('a[href="signup.html"]');
                 
                 // 로그인 및 회원가입 링크 제거
-                loginLink.remove();
-                signupLink.remove();
+                if (loginLink) {
+                    loginLink.remove();
+                }
+                if (signupLink) {
+                    signupLink.remove();
+                }
 
                 // 로그아웃 버튼 추가
                 const logoutButton = document.createElement('a');
